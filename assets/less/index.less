@@ -1,0 +1,124 @@
+@import 'base/reset.less';
+@import 'layout.less';
+@import '_button.less';
+@a: #fe7676;
+@b: #ffa04b;
+@c: #ff7a4b;
+@d: #ff4a70;
+@e: #ff62a1;
+@f: #ff4b4b;
+
+main{
+    width: 72%;
+    margin:80px auto;
+    .period{
+        border-left: 2px solid @d;
+        padding: 30px 0 50px 30px;
+        position: relative;
+        .date-range-tag{
+            position: absolute;
+            font-weight: normal;
+            font-size: 20px;
+            top:-8px;
+            left:0;
+            padding-left:30px;
+            color:#546e7a;
+            &:before{
+                position: absolute;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                left: -11px;
+                top: 0;
+                background-color: @f;
+                content: '';
+            }
+        }
+        ul.todolist{
+            list-style: none;
+            padding: 30px;
+            position: relative;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            h3.title{
+                font-weight: normal;
+                font-size: 16px;
+                position: absolute;
+                padding: 8px;
+                left: 20px;
+                top: -20px;
+                color:white;
+                background-color: @c;
+                &:before{
+                    border-bottom: 20px solid #661e2d;
+                    border-left: 12px solid transparent;
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left:-12px;
+                }
+            }
+            li{
+                width: 100%;
+                .todo,.result{
+                    line-height: 2.2;
+                    .pending,.success,.fail{
+                        padding: 2px 4px;
+                        border:1px solid #ddd;
+                        color:#bbb;
+                        cursor: pointer;
+                    }
+                    .pending{
+                        &.active{
+                            border:1px solid blue;
+                            color:blue;
+                        }
+                    }
+                    .success{
+                        &.active{
+                            border:1px solid green;
+                            color:green;
+                        }
+                    }
+                    .fail{
+                        &.active{
+                            border:1px solid red;
+                            color:red;
+                        }
+                    }
+                }
+            }
+        }
+        ul.diarylist{
+            list-style: none;
+            padding: 30px;
+            position: relative;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            h3.title{
+                font-weight: normal;
+                font-size: 16px;
+                position: absolute;
+                padding: 8px;
+                left: 20px;
+                top: -20px;
+                color:white;
+                background-color: @e;
+                &:before{
+                    border-bottom: 20px solid #661e2d;
+                    border-left: 12px solid transparent;
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left:-12px;
+                }
+            }
+            li.diary{
+                .date-tag,.content{
+                    line-height: 2.2;
+                }
+            }
+        }
+    }
+
+}

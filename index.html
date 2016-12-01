@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>胡柯 - 安静思考的地方</title>
+
+    <link rel="stylesheet" href="assets/css/index.css">
+    <script src="assets/js/lib/template.min.js"></script>
+    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src="/assets/minjs/common.min.js"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        if (typeof jQuery == 'undefined') {
+            console.log('jquery undefined!');
+            document.write(unescape("%3Cscript src='/assets/js/lib/jquery-3.3.1.min.js' type='text/javascript' %3E%3C/script%3E"));
+        }//]]>
+    </script>
+</head>
+<body>
+    <main></main>
+</body>
+<script type="text/html" id="tpl-period-list">
+    {{each periods as period i}}
+    <section class="period">
+        <span class="date-range-tag">May 2016 - Oct 2016</span>
+        <button class="btn btn-info new-todo-btn" data-periodid="{{period.periodId}}">New todo</button>
+        <button class="btn btn-balanced new-diary-btn" data-periodid="{{period.periodId}}">New diary</button>
+        {{if period.notes && period.notes.length > 0}}
+        <ul class="todolist clearfix">
+            <h3 class="title">todolist</h3>
+            {{each period.notes as note j}}
+            <li>
+                <span class="todo g-fl col-9">{{note.content}}</span>
+                <span class="result g-fl col-3" data-noteid="{{note.noteId}}">
+                    {{if note.result == null}}
+                    <span class="pending active">未完成</span>
+                    <span class="success">成功</span>
+                    <span class="fail">失败</span>
+                    {{else if note.result == true}}
+                    <span class="pending">未完成</span>
+                    <span class="success active">成功</span>
+                    <span class="fail">失败</span>
+                    {{else}}
+                    <span class="pending">未完成</span>
+                    <span class="success">成功</span>
+                    <span class="fail active">失败</span>
+                    {{/if}}
+                </span>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+        {{if period.diaries &&  period.diaries.length > 0}}
+        <ul class="diarylist clearfix">
+            <h3 class="title">diarylist</h3>
+            {{each period.diaries as diary k}}
+            <li class="diary">
+                <a href="" class="content g-fl col-9">{{diary.content}}</a>
+                <span class="date-tag g-fl col-3">1 Oct 2016</span>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </section>
+    {{/each}}
+</script>
+<script src="/assets/minjs/index.min.js"></script>
+</html>

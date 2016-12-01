@@ -1,0 +1,68 @@
+
+@bgcolor: #efeff4;  // app 背景颜色
+@primary-light: #fe4b66; // 曾今主色调
+@primary: #ef082e; // 现在主色调
+@primary-bg: #fff7f7; // 主要的-清淡
+@primary-dark: #e02128;
+@white: #fff;
+@assert: #fe3f52; // 红
+@orange: #f60; // 橙
+@orange-dark:#fb7518;
+@energized: #ffc900; // 黄
+@balanced: rgb(49, 160, 48); // 绿
+@blue: #36759d; // 天蓝
+@white: #fff; // 白
+@stable: #f8f8f8; // 灰
+@grey: #9f9f9f;
+@dark: #444; // 黑
+@brown: #9b7463; // 棕色
+@pink: #fc32a4;
+@purple: #caabe0;
+@yellow: #fad74b;
+
+.btn{
+    border-radius: 4px;
+    box-shadow: none;
+    color: #555555;
+    border-color: whitesmoke;
+    background: whitesmoke;
+    border-color: #d5d5d5;
+    text-shadow: none;
+
+    border: 1px solid #cccccc;
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    &.btn-info{
+        color: white;
+        border-color: #15a7f0;
+        background: #15a7f0;
+    }
+    &.btn-primary {
+        border: 1px solid @primary;
+        background-color: @primary;
+        color: #fff;
+    }
+    &.btn-balanced {
+        border: 1px solid @balanced;
+        background-color: @balanced;
+        color: #fff;
+    }
+    &.btn-primary-dark {
+        border: 1px solid @primary-dark;
+        background-color: @primary-dark;
+        color: #fff;
+    }
+    &.btn-orange {
+        border: 1px solid @orange;
+        background-color: @orange;
+        color: #fff;
+    }
+
+
+}
