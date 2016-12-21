@@ -7,61 +7,90 @@
 
     <link rel="stylesheet" href="assets/css/index.css">
     <script src="assets/js/lib/template.min.js"></script>
-    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src="/assets/js/lib/jquery-3.1.1.min.js"></script>
     <script src="/assets/minjs/common.min.js"></script>
-    <script type="text/javascript">
-        //<![CDATA[
-        if (typeof jQuery == 'undefined') {
-            console.log('jquery undefined!');
-            document.write(unescape("%3Cscript src='/assets/js/lib/jquery-3.3.1.min.js' type='text/javascript' %3E%3C/script%3E"));
-        }//]]>
-    </script>
 </head>
 <body>
-    <main></main>
+    <main>
+        <input type="date" name="new-period-start"/>
+        <input type="date" name="new-period-end"/>
+        <button class="btn btn-info new-period-btn">New period</button>
+        <div class="period-wrapper"></div>
+    </main>
 </body>
+<script type="text/html" id="tpl-todo-item">
+    <li>
+        <span class="non-editable todo g-fl col-6">{{title}}</span>
+        <span class="editable todo g-fl col-6"><input type="text" value="{{title}}" /></span>
+        <span class="result g-fl col-3" data-noteid="{{noteId}}">
+            {{if result == 2}}
+            <span class="pending active">未完成</span>
+            <span class="success">成功</span>
+            <span class="fail">失败</span>
+            {{else if result == 1}}
+            <span class="pending">未完成</span>
+            <span class="success active">成功</span>
+            <span class="fail">失败</span>
+            {{else}}
+            <span class="pending">未完成</span>
+            <span class="success">成功</span>
+            <span class="fail active">失败</span>
+            {{/if}}
+        </span>
+        <span class="config g-fl col-3">
+            <span class="iconfont icon-config" data-noteid={{noteId}}></span>
+            <ul class="dropdown-menu">
+                <li class="rename" data-noteid={{noteId}}><i class="iconfont icon-modify"></i>&nbsp;&nbsp;rename</li>
+                <li class="divider"></li>
+                <li class="del" data-noteid={{noteId}}><i class="iconfont icon-delete"></i>&nbsp;&nbsp;delete</li>
+            </ul>
+        </span>
+    </li>
+</script>
+<script type="text/html" id="tpl-diary-item">
+    <li class="diary">
+        <a href="/diarydetail.html?diaryId={{diaryId}}" class="non-editable content g-fl col-6">{{title}}</a>
+        <span class="editable g-fl col-6"><input type="text" value="{{title}}"/></span>
+        <span class="date-tag g-fl col-3">{{createdDate}}</span>
+
+        <span class="config g-fl col-3">
+            <span class="iconfont icon-config" data-diaryid={{diaryId}}></span>
+            <ul class="dropdown-menu">
+                <li class="rename" data-diaryid={{diaryId}}><i class="iconfont icon-modify"></i>&nbsp;&nbsp;rename</li>
+                <li class="divider"></li>
+                <li class="del" data-diaryid={{diaryId}}><i class="iconfont icon-delete"></i>&nbsp;&nbsp;delete</li>
+            </ul>
+        </span>
+    </li>
+</script>
 <script type="text/html" id="tpl-period-list">
     {{each periods as period i}}
     <section class="period">
-        <span class="date-range-tag">May 2016 - Oct 2016</span>
+        <span class="date-range-tag">{{period.startedDate}} 到 {{period.endedDate}}</span>
+        <span class="edit-box">
+            <input type="date" name="period-start"/>
+            <input type="date" name="period-end"/>
+            <button class="period-update-btn" data-periodid="{{period.periodId}}">update</button>
+            <button class="period-del-btn" data-periodid="{{period.periodId}}">delete</button>
+        </span>
         <button class="btn btn-info new-todo-btn" data-periodid="{{period.periodId}}">New todo</button>
         <button class="btn btn-balanced new-diary-btn" data-periodid="{{period.periodId}}">New diary</button>
-        {{if period.notes && period.notes.length > 0}}
-        <ul class="todolist clearfix">
+        <ul class="todolist clearfix" data-periodid="{{period.periodId}}">
+            {{if period.notes && period.notes.length > 0}}
             <h3 class="title">todolist</h3>
             {{each period.notes as note j}}
-            <li>
-                <span class="todo g-fl col-9">{{note.content}}</span>
-                <span class="result g-fl col-3" data-noteid="{{note.noteId}}">
-                    {{if note.result == null}}
-                    <span class="pending active">未完成</span>
-                    <span class="success">成功</span>
-                    <span class="fail">失败</span>
-                    {{else if note.result == true}}
-                    <span class="pending">未完成</span>
-                    <span class="success active">成功</span>
-                    <span class="fail">失败</span>
-                    {{else}}
-                    <span class="pending">未完成</span>
-                    <span class="success">成功</span>
-                    <span class="fail active">失败</span>
-                    {{/if}}
-                </span>
-            </li>
+                {{include 'tpl-todo-item' note}}
             {{/each}}
+            {{/if}}
         </ul>
-        {{/if}}
-        {{if period.diaries &&  period.diaries.length > 0}}
-        <ul class="diarylist clearfix">
+        <ul class="diarylist clearfix" data-periodid="{{period.periodId}}">
+            {{if period.diaries &&  period.diaries.length > 0}}
             <h3 class="title">diarylist</h3>
             {{each period.diaries as diary k}}
-            <li class="diary">
-                <a href="" class="content g-fl col-9">{{diary.content}}</a>
-                <span class="date-tag g-fl col-3">1 Oct 2016</span>
-            </li>
+                {{include 'tpl-diary-item' diary}}
             {{/each}}
+            {{/if}}
         </ul>
-        {{/if}}
     </section>
     {{/each}}
 </script>

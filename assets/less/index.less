@@ -1,6 +1,7 @@
 @import 'base/reset.less';
 @import 'layout.less';
 @import '_button.less';
+@import 'iconfont.less';
 @a: #fe7676;
 @b: #ffa04b;
 @c: #ff7a4b;
@@ -12,6 +13,7 @@ main{
     width: 72%;
     margin:80px auto;
     .period{
+        top:20px;
         border-left: 2px solid @d;
         padding: 30px 0 50px 30px;
         position: relative;
@@ -33,6 +35,12 @@ main{
                 background-color: @f;
                 content: '';
             }
+        }
+        .edit-box{
+            position: absolute;
+            top: -8px;
+            right: 0;
+            padding-right: 30px;
         }
         ul.todolist{
             list-style: none;
@@ -60,6 +68,9 @@ main{
             }
             li{
                 width: 100%;
+                .todo.editable{
+                    display:none;
+                }
                 .todo,.result{
                     line-height: 2.2;
                     .pending,.success,.fail{
@@ -84,6 +95,35 @@ main{
                         &.active{
                             border:1px solid red;
                             color:red;
+                        }
+                    }
+                }
+                .config{
+                    line-height: 1.6;
+                    text-align: center;
+                    position: relative;
+                    .dropdown-menu{
+                        display: none;
+                        position: absolute;
+                        top: 0;
+                        z-index: 1000;
+                        right: 0;
+
+                        font-size: 14px;
+                        min-width: 160px;
+                        padding: 2px 0;
+                        margin: 2px 0 0;
+                        list-style: none;
+                        background-color: white;
+                        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+                        border:#e5e5e5;
+                        border-radius: 4px;
+                        .divider{
+                            height: 1px;
+                            margin: 9px 1px;
+                            overflow: hidden;
+                            background-color: #e5e5e5;
+                            border-bottom: 1px solid #e5e5e5;
                         }
                     }
                 }
@@ -114,11 +154,121 @@ main{
                 }
             }
             li.diary{
+                .editable{
+                    display:none;
+                }
                 .date-tag,.content{
                     line-height: 2.2;
+                }
+                .config{
+                    line-height: 1.6;
+                    text-align: center;
+                    position: relative;
+                    .dropdown-menu{
+                        display: none;
+                        position: absolute;
+                        top: 0;
+                        z-index: 1000;
+                        right: 0;
+
+                        font-size: 14px;
+                        min-width: 160px;
+                        padding: 2px 0;
+                        margin: 2px 0 0;
+                        list-style: none;
+                        background-color: white;
+                        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+                        border:#e5e5e5;
+                        border-radius: 4px;
+                        .divider{
+                            height: 1px;
+                            margin: 9px 1px;
+                            overflow: hidden;
+                            background-color: #e5e5e5;
+                            border-bottom: 1px solid #e5e5e5;
+                        }
+                    }
                 }
             }
         }
     }
 
 }
+
+
+// //icons
+// .iconfont{
+//     display: inline-block;
+//     padding: 0 18px;
+//     position: relative;
+//     cursor: pointer;
+//     text-decoration: none;
+//     .icon-box{
+//         position: absolute;
+//         top: -200%;
+//         left: -50%;
+//         width: 100px;
+//         height: 100px;
+//         img{
+//             width:100%;
+//             height: 100%;
+//         }
+//     }
+// }
+// .icon-email{
+//     font-weight: normal;
+//     color:#333;
+// }
+// .icon-qq{
+//     font-weight: normal;
+//     color: #80d6f8;
+// }
+// .icon-github{
+// }
+// .icon-linkedin{
+//     font-weight: normal;
+//     color:#1d87be;
+// }
+// .icon-Facebook{
+//     font-weight: normal;
+//     color:#3a5898;
+// }
+// .icon-weixin{
+//     font-weight: normal;
+//     color:#84d54c;
+// }
+// .icon-email{
+//     font-weight: normal;
+//     color:#e0e1e5;
+// }
+// .icon-mobile{
+//     font-weight: normal;
+// }
+// .icon-box{
+//     display: none;
+// }
+// .iconfont.icon-expand{
+//     font-size: 34px;
+//     display: none;
+// }
+// .iconfont.icon-collapse{
+//     font-size: 42px;
+// }
+// .iconfont.icon-fudan{
+//     color:#ebeeed;
+// }
+// .iconfont.icon-mianzhi{
+//     color:white;
+// }
+// .iconfont.icon-dagou{
+//     color: #4094c7;
+// }
+// .icon-totop{
+//     display: none;
+//     font-size: 44px;
+//     position: fixed;
+//     color:#757575;
+//     right: 20px;
+//     bottom: 200px;
+//     opacity: .6;
+// }
